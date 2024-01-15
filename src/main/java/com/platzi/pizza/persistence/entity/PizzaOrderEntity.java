@@ -36,11 +36,11 @@ public class PizzaOrderEntity {
     private String additionalNotes;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer", updatable = false, insertable = false)
     @JsonIgnore
+    @JoinColumn(name = "id_customer", referencedColumnName = "id_customer", updatable = false, insertable = false)
     private CustomerEntity customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItemEntity> items;
 
 }

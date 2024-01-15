@@ -23,9 +23,21 @@ public class PizzaService {
         return pizzaRepository.findAll();
     }
 
+    public PizzaEntity findByName(String name){
+        return this.pizzaRepository.findAllByAvailableTrueAndNameIgnoreCase(name);
+    }
+
     public PizzaEntity getById(Integer idPizza){
         return this.pizzaRepository.findById(idPizza)
                 .orElse(null);
+    }
+    public List<PizzaEntity> findByAvailable(){
+        return this.pizzaRepository.findAllByAvailableTrueOrderByPrice();
+    }
+    
+
+    public List<PizzaEntity> findWith(String ingrediente){
+        return this.pizzaRepository.findAllByAvailableTrueAndDescriptionContainingIgnoreCase(ingrediente);
     }
 
     public PizzaEntity save(PizzaEntity pizzaEntity) {

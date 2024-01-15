@@ -23,7 +23,7 @@ public class PizzaOrderController {
 
     @GetMapping("/all")
     public ResponseEntity<List<PizzaOrderEntity>> findAll(){
-        return ResponseEntity.ok(pizzaOrderService.findAll());
+        return ResponseEntity.ok(this.pizzaOrderService.findAll());
     }
 
 }
