@@ -26,6 +26,6 @@ public class CustomerEntity {
     private String email;
 
     @Column(nullable = false, length = 20)
-    private String phone_number;
+    private String phoneNumber;
 
 }

@@ -41,6 +41,7 @@ public class PizzaOrderEntity {
     private CustomerEntity customer;
 
     @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+//    @OrderBy("price DESC") se puede order automaticamente desde este punto una consulta
     private List<OrderItemEntity> items;
 
 }
