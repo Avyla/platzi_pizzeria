@@ -17,11 +17,11 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<CustomerEntity> getAll(){
+    public List<CustomerEntity> getAll() {
         return this.customerRepository.findAll();
     }
 
-    public CustomerEntity getByPhone(String phone){
+    public CustomerEntity getByPhone(String phone) {
         return customerRepository.findByPhone(phone);
     }
 }

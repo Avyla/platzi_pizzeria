@@ -21,12 +21,14 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
     @GetMapping("/all")
-    public ResponseEntity<List<CustomerEntity>> getAll(){
+    public ResponseEntity<List<CustomerEntity>> getAll() {
         return ResponseEntity.ok(customerService.getAll());
     }
+
     @GetMapping("/phone/{phone}")
-    public ResponseEntity<CustomerEntity> getByPhone(@PathVariable("phone") String phone){
+    public ResponseEntity<CustomerEntity> getByPhone(@PathVariable("phone") String phone) {
         return ResponseEntity.ok(customerService.getByPhone(phone));
     }
 }

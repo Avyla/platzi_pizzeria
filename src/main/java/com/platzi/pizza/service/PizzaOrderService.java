@@ -1,6 +1,7 @@
 package com.platzi.pizza.service;
 
 import com.platzi.pizza.persistence.entity.PizzaOrderEntity;
+import com.platzi.pizza.persistence.projection.OrderSummary;
 import com.platzi.pizza.persistence.repository.PizzaOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,16 +24,16 @@ public class PizzaOrderService {
         this.pizzaOrderRepository = pizzaOrderRepository;
     }
 
-    public List<PizzaOrderEntity> getAll(){
+    public List<PizzaOrderEntity> getAll() {
         return pizzaOrderRepository.findAll();
     }
 
-    public List<PizzaOrderEntity> getTodayOrders(){
-        LocalDateTime date = LocalDate.now().atTime(0,0);
+    public List<PizzaOrderEntity> getTodayOrders() {
+        LocalDateTime date = LocalDate.now().atTime(0, 0);
         return this.pizzaOrderRepository.findAllByDateAfter(date);
     }
 
-    public List<PizzaOrderEntity> getOutsideOrders(){
+    public List<PizzaOrderEntity> getOutsideOrders() {
         List<String> methods = Arrays.asList(DELIVERY, CARRYOUT);
         return this.pizzaOrderRepository.findAllByMethodIn(methods);
     }
@@ -41,7 +42,11 @@ public class PizzaOrderService {
 //        return this.pizzaOrderRepository.findCustomerOrders(idCustomer);
 //    }
 
-    public List<PizzaOrderEntity> getCustomerOrders(String idCustomer){
+    public List<PizzaOrderEntity> getCustomerOrders(String idCustomer) {
         return this.pizzaOrderRepository.findByIdCustomer(idCustomer);
+    }
+
+    public OrderSummary getSummary(Integer idOrder) {
+        return this.pizzaOrderRepository.findSummary(idOrder);
     }
 }
