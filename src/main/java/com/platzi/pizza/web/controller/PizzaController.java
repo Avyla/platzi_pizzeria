@@ -17,9 +17,20 @@ import java.util.List;
 @RequestMapping("/pizza")
 public class PizzaController {
 
+    /*EL CORS PERMITE LLAMAR LOS METODOS DEL CONTROLADOR DESDE ORIGENES DISTINTOS*/
+
+    /* HABILITAR Y CONFIGURAR CORRECTAMENTE CORS DESDE CorsConfig.java*/
+
+    /*En caso que se quiera hacer una solicitud a alguno de estos metodos
+    fuera de su origen (LocalHost8080) se agrega
+    @CrossOrigin(origins = ) y el valor del origen en string o si son distintos origenes
+    en un arreglo de Strings
+    En el metodo findAll existe un ejemplo*/
+
     private final PizzaService pizzaService;
 
     @Autowired
+
     public PizzaController(PizzaService pizzaService) {
         this.pizzaService = pizzaService;
     }
@@ -27,6 +38,7 @@ public class PizzaController {
     /* Se podria decir que la diferencia entre @PathVarible y @RequestParam es que @PathVarible se utiliza para identificar
     uno o varios elementos mediante una busque y @RequestParam filtra los resultados de un busqueda a traves de informacion adicional*/
     @GetMapping("/all")
+    //@CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Page<PizzaEntity>> findAll(@RequestParam(defaultValue = "0") Integer page,
                                                      @RequestParam(defaultValue = "8") Integer elements) {
         return ResponseEntity.ok(this.pizzaService.getAll(page, elements));
