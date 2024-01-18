@@ -43,6 +43,7 @@ public class SecutiryConfig {
                         /* RequestMatchers me permite dar o denegar autorizacion a los metodos http que se realicen
                         en el path que defina NOTA: un asterisco es solo lo que este a primer nivel del path
                          y dos asteriscos es lo que este a cualquier nivel del path */
+                        .requestMatchers("/v1/authenticate","/v3/api-docs/**","/swagger-ui/**","/swagger-ui.html").permitAll()
                         .requestMatchers("auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, "/pizza/**").hasAnyRole(ADMIN, CUSTOMER)
                         .requestMatchers(HttpMethod.POST, "/pizza/**").hasRole(ADMIN)
